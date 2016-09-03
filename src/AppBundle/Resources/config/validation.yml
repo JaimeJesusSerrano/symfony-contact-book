@@ -1,0 +1,62 @@
+#AppBundle/Resources/config/validation.yml
+AppBundle\Entity\Contact:
+    properties:
+        id:
+            - IsNull:
+                groups: [Create]
+        name:
+            - NotBlank:
+                message: Name should not be blank
+                groups: [Create, Edit]
+            - Length:
+                min: 1
+                max: 30
+                minMessage: Name must be at least {{ limit }} characters long
+                maxMessage: Name cannot be longer than {{ limit }} characters
+                groups: [Create, Edit]
+        surname:
+            - NotBlank:
+                message: Surname should not be blank
+                groups: [Create, Edit]
+            - Length:
+                min: 1
+                max: 30
+                minMessage: Surname must be at least {{ limit }} characters long
+                maxMessage: Surname cannot be longer than {{ limit }} characters
+                groups: [Create, Edit]
+        email_address:
+            - NotBlank:
+                message: Email address should not be blank
+                groups: [Create, Edit]
+            - Email:
+                message: The email address "{{ value }}" is not a valid email
+                checkMX: true
+                groups: [Create, Edit]
+            - Length:
+                min: 1
+                max: 50
+                minMessage: Email address must be at least {{ limit }} characters long
+                maxMessage: Email address cannot be longer than {{ limit }} characters
+                groups: [Create, Edit]
+        phone_number:
+            - Length:
+                max: 30
+                maxMessage: Phone number cannot be longer than {{ limit }} characters
+                groups: [Create, Edit]
+
+
+AppBundle\Entity\Group:
+    properties:
+        id:
+            - IsNull:
+                groups: [Create]
+        name:
+            - NotBlank:
+                message: Name should not be blank
+                groups: [Create]
+            - Length:
+                min: 1
+                max: 30
+                minMessage: Name must be at least {{ limit }} characters long
+                maxMessage: Name cannot be longer than {{ limit }} characters
+                groups: [Create]

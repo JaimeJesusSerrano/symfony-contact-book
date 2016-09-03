@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact book{% endblock %}
+
+{% block body %}
+	{% if contacts == 'empty' %}
+		<form action="{{ path('create_contact') }}">
+			<p>Your contact book is empty. Add your first contact
+	    		<input class="btn btn-primary" type="submit" value="Add a new contact">
+	    	</p>
+		</form>
+		
+	{% elseif contacts == 'unsuccessful_search' %}
+		{{ form_start(form_search, {'method': 'POST', 'style': 'horizontal', 'attr': {'id': 'form_search'} }) }}
+			{{ form_row(form_search.search, { 'label': ' '}) }}
+			{{ form_widget(form_search) }}
+		{{ form_end(form_search) }}
+	
+		<h3>The search: {{ search }} was unsuccessful</h3> 
+		
+	{% else %}
+		{{ form_start(form_search, {'method': 'POST', 'style': 'horizontal', 'attr': {'id': 'form_search'} }) }}
+			{{ form_row(form_search.search, { 'label': ' '}) }}
+			{{ form_widget(form_search) }}
+		{{ form_end(form_search) }}
+		
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>{% trans %}Name{% endtrans %}</th>
+						<th>{% trans %}Surname{% endtrans %}</th>
+						<th>{% trans %}Email address{% endtrans %}</th>
+						<th>{% trans %}Phone number{% endtrans %}</th>
+						<th>{% trans %}Groups{% endtrans %}</th>
+						<th>{% trans %}Options{% endtrans %}</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for contact in contacts %}
+					    <tr>
+							<td>{{ contact.getName() }}</td>
+							<td>{{ contact.getSurname() }}</td>
+							<td>{{ contact.getEmailAddress() }}</td>
+							<td>{{ contact.getPhoneNumber() }}</td>
+							<td>
+							{% for group in contact.getGroups() %}
+	    						{{ group.getName() }}</br>
+							{% endfor %}
+							</td>
+							<td>
+								<form action="{{ path('edit_contact', {'contact_id': contact.getId()}) }}">
+						    		<input class="btn btn-primary" type="submit" value="Edit">
+								</form>
+								<form action="{{ path('remove_contact', {'contact_id': contact.getId()}) }}">
+						    		<input class="btn btn-danger" type="submit" value="Delete">
+								</form>
+							</td>
+					    </tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	{% endif %}
+{% endblock %}

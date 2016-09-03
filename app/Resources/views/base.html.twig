@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        
+        {% block bootstrap_stylesheets %}
+       	    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
+        {% endblock %}
+        
+        {% block stylesheets %}{% endblock %}
+        
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block main_menu %}
+            <div class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+				    {# Brand and toggle get grouped for better mobile display #}
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#admin-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href={{ path('contact_list') }}>{% block main_menu_name %}Contact Book{% endblock %}</a>
+                    </div>
+			
+                    {# Collect the nav links, forms, and other content for toggling #}
+                    <div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
+                        {{ knp_menu_render('AppBundle:MenuBuilder:mainMenu', {'currentClass': 'active', 'template': 'AppBundle:Menu:knp_menu.html.twig'}) }} 
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 60px;"></div>
+        {% endblock %}
+        
+        <div class="container">
+        {% block body %}{% endblock %}
+        </div>
+    	
+        {% block jquery_javascripts %}
+            {% javascripts '../vendor/components/jquery/jquery.js' %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
+        
+        {% block bootstrap_javascripts %}
+            <script src="{{ asset('js/bootstrap.js') }}"></script>
+        {% endblock %}
+        
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

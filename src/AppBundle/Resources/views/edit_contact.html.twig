@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit contact{% endblock %}
+
+{% block body %}
+	{{ form_start(form, {'method': 'POST', 'style': 'horizontal', 'attr': {'id': 'form_create_contact', 'novalidate': 'novalidate'} }) }}
+		{{ form_row(form.name, { 'label': 'Name', 'label_col': 2, 'widget_col': 3}) }}
+		{{ form_row(form.surname, { 'label': 'Surname', 'label_col': 2, 'widget_col': 3}) }}
+		{{ form_row(form.email_address, { 'label': 'Email address', 'label_col': 2, 'widget_col': 4}) }}
+		{{ form_row(form.phone_number, { 'label': 'Phone number (optional)', 'label_col': 2, 'widget_col': 2}) }}
+		{{ form_row(form.submit_button, {'label': 'Edit'}) }}
+		{{ form_widget(form) }}
+	{{ form_end(form) }}
+{% endblock %}

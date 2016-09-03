@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Groups{% endblock %}
+
+{% block body %}	
+	{% if groups != null %}
+	<div class="container">
+		<form action="{{ path('create_group') }}">
+		    <input class="btn btn-primary" type="submit" value="Create new group">
+		</form>
+	</div>
+	</br>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>{% trans %}Name{% endtrans %}</th>
+					<th>{% trans %}Options{% endtrans %}</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for group in groups %}
+				    <tr>
+						<td>{{ group.getName() }}</td>
+						<td>
+							<form action="{{ path('remove_group', {'group_id': group.getId()}) }}">
+					    		<input class="btn btn-danger" type="submit" value="Delete">
+							</form>
+						</td>
+				    </tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	{% else %}
+	<div class="container">
+		<form action="{{ path('create_group') }}">
+			<p>You haven't any group
+		    	<input class="btn btn-primary" type="submit" value="Create new group">
+		    </p>
+		</form>
+	</div>
+	</br>
+	{% endif %}
+{% endblock %}

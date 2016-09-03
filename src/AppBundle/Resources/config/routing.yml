@@ -1,0 +1,35 @@
+contact_list:
+    path:     /
+    defaults:  
+        _controller: AppBundle:Main:contactList
+
+create_contact:
+    path:     /add-new-contact
+    defaults:  
+        _controller: AppBundle:Main:createContact
+        
+remove_contact:
+    path:     /remove-contact/{contact_id}
+    defaults:  
+        _controller: AppBundle:Main:removeContact
+        
+edit_contact:
+    path:     /edit-contact/{contact_id}
+    defaults:  
+        _controller: AppBundle:Main:editContact
+        
+groups:
+    path:     /groups
+    defaults:  
+        _controller: AppBundle:Main:groupList
+        
+create_group:
+    path:     /add-new-group
+    defaults:  
+        _controller: AppBundle:Main:createGroup
+
+remove_group:
+    path:     /remove-group/{group_id}
+    defaults:  
+        _controller: AppBundle:Main:removeGroup
+

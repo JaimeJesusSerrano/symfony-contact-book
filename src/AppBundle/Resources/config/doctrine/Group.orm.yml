@@ -1,0 +1,17 @@
+# src/AppBundle/Resources/config/doctrine/Group.orm.yml
+AppBundle\Entity\Group:
+    type: entity
+    repositoryClass: AppBundle\Entity\GroupRepository
+    manyToMany:
+        contacts:
+            targetEntity: Contact
+            mappedBy: groups
+    table: my_group
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 30

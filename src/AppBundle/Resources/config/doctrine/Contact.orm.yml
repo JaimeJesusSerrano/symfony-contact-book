@@ -1,0 +1,35 @@
+# src/AppBundle/Resources/config/doctrine/Contact.orm.yml
+AppBundle\Entity\Contact:
+    type: entity
+    repositoryClass: AppBundle\Entity\ContactRepository
+    manyToMany:
+        groups:
+            targetEntity: Group
+            inversedBy: contacts
+            joinTable:
+                name: contacts_groups
+                joinColumns:
+                    user_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    group_id:
+                        referencedColumnName: id
+    table: contact
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 30
+        surname:
+            type: string
+            length: 30
+        email_address:
+            type: string
+            length: 50
+        phone_number:
+            type: string
+            length: 30
+            nullable: TRUE
