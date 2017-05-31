@@ -7,22 +7,22 @@ Executed in Ubuntu 15.10 64 bits.
 
 ## Import preconfiguration
 
-###Install Apache2
+### Install Apache2
 ```Shell
 $ sudo apt-get install apache2
 ```
 
-###Install PHP5
+### Install PHP5
 ```Shell
 $ sudo apt-get install php5 curl php5-curl libapache2-mod-php5
 ```
 
-###Install Git
+### Install Git
 ```Shell
 $ sudo apt-get install git
 ```
 
-###Install Composer
+### Install Composer
 ```Shell
 $ sudo curl -s https://getcomposer.org/installer | php
 $ sudo mv composer.phar /usr/local/bin/composer
